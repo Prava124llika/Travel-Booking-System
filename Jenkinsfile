@@ -50,9 +50,12 @@ pipeline {
         stage('Build Frontend') {
             steps {
                 sh '''
-            export PATH=/home/ubuntu/.nvm/versions/node/v14.21.3/bin:$PATH
+            export PATH=/opt/node14/bin:$PATH
 
+            echo "Node version:"
             node --version
+
+            echo "NPM version:"
             npm --version
 
             cd public/booking-app
