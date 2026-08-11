@@ -23,14 +23,27 @@ pipeline {
 
         stage('Build Backend') {
             steps {
-                sh 'chmod +x api/gradlew'
-                sh 'cd api && ./gradlew clean bootJar -x test'
+                  sh '''
+            export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+            export PATH=$JAVA_HOME/bin:$PATH
+
+            java -version
+            cd api
+            ./gradlew clean bootJar -x test
+        '''
             }
         }
 
         stage('Test Backend') {
             steps {
-                sh 'cd api && ./gradlew test'
+                sh '''
+            export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+            export PATH=$JAVA_HOME/bin:$PATH
+
+            java -version
+            cd api
+            ./gradlew test
+        '''
             }
         }
 
