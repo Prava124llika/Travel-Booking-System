@@ -51,6 +51,7 @@ pipeline {
             steps {
                 sh '''
             export PATH=/opt/node14/bin:$PATH
+            export CI=false
 
             echo "Node version:"
             node --version
